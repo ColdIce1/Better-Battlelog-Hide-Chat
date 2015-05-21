@@ -31,19 +31,20 @@ BBLog.handle("add.plugin", {
     name : "Toggleable Chat for BBLog Theme 2.0",
     version : '1.0',
     build : '20150520',
-	$comcentercontainer : $("#comcenter-area"),
-	$comcenter : $("#comcenter-friends"),
-	$searchForm : $comcenter.find("#comcenter-search"),
-	$searchResults : $comcenter.find("#comcenter-search-results"),
 
     init : function (instance) {
-		$("div#friendlist-header").toggle(function(e){
-			if(e.target == this){
-				$("#comcenter-friends").animate({height:80},200);
-			}
-		},function(e){
-			if(e.target == this){
-				$("#comcenter-friends").animate({height:700},200);
+		var $comcenter = $("#comcenter-friends");
+		$('body').on('click', "div#friendlist-header", function(e){
+			if (!$(this).attr('data-toggled') || $(this).attr('data-toggled') == 'off'){
+				if(e.target == this){
+					$(this).attr('data-toggled','on');
+					$comcenter.animate({height:80},200);
+				}
+			} else if ($(this).attr('data-toggled') == 'on'){
+				if(e.target == this){
+					$(this).attr('data-toggled','off');
+					$comcenter.animate({height:700},200);
+				}
 			}
 		});
 		$(".icon-search[data-bind-toggle=comcenter-search]").click(function(e){
@@ -54,6 +55,10 @@ BBLog.handle("add.plugin", {
     },
 	
 	toggleComcenterSearch : function () {
+		var $comcenter = $("#comcenter-friends"),
+		$searchForm = $comcenter.find("#comcenter-search"),
+		$searchResults = $comcenter.find("#comcenter-search-results");
+		
 		var $input = $searchForm.find("input");
 		$input.val("");
 		if ($comcentercontainer.hasClass("show-search")) {
