@@ -1,7 +1,7 @@
 /*
     @name Toggleable Chat for BBLog Theme 2.0
     @author ColdIce
-    @version 1.0
+    @version 1.1
     @release_date 20.05.2015
 
     The MIT License (MIT)
