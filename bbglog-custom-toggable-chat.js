@@ -34,7 +34,8 @@ BBLog.handle("add.plugin", {
 
     init : function (instance) {
 		var $comcenter = $("#comcenter-friends");
-		$('body').on('click', "div#friendlist-header", function(e){
+		$("#comcenter-settings").css({"padding:":"3px 8px"});
+		$("#friendlist-header").click(function(e){
 			if (!$(this).attr('data-toggled') || $(this).attr('data-toggled') == 'off'){
 				if(e.target == this){
 					$(this).attr('data-toggled','on');
@@ -58,7 +59,7 @@ BBLog.handle("add.plugin", {
 		var $comcenter = $("#comcenter-friends"),
 		$searchForm = $comcenter.find("#comcenter-search"),
 		$searchResults = $comcenter.find("#comcenter-search-results");
-		
+
 		var $input = $searchForm.find("input");
 		$input.val("");
 		if ($comcentercontainer.hasClass("show-search")) {
