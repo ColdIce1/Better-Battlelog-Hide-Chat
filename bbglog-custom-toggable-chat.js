@@ -33,28 +33,29 @@ BBLog.handle("add.plugin", {
     build : '20150520',
 
     init : function (instance) {
-		var $comcenter = $("#comcenter-friends");
-		$("#comcenter-settings").css({"padding:":"3px 8px"});
-		$("#friendlist-header").click(function(e){
-			if (!$(this).attr('data-toggled') || $(this).attr('data-toggled') == 'off'){
-				if(e.target == this){
-					$(this).attr('data-toggled','on');
-					$comcenter.animate({height:80},200);
+		$(document).ready(function () {
+			var $comcenter = $("#comcenter-friends");
+			$("#comcenter-settings").css({"padding:":"3px 8px"});
+			$("#friendlist-header").click(function(e){
+				if (!$(this).attr('data-toggled') || $(this).attr('data-toggled') == 'off'){
+					if(e.target == this){
+						$(this).attr('data-toggled','on');
+						$comcenter.animate({height:80},200);
+					}
+				} else if ($(this).attr('data-toggled') == 'on'){
+					if(e.target == this){
+						$(this).attr('data-toggled','off');
+						$comcenter.animate({height:700},200);
+					}
 				}
-			} else if ($(this).attr('data-toggled') == 'on'){
-				if(e.target == this){
-					$(this).attr('data-toggled','off');
-					$comcenter.animate({height:700},200);
-				}
-			}
-		});
-		$(".icon-search[data-bind-toggle=comcenter-search]").click(function(e){
-			e.preventDefault();
-			toggleComcenterSearch();
-			return false;
-		});
+			});
+			$(".icon-search[data-bind-toggle=comcenter-search]").click(function(e){
+				e.preventDefault();
+				toggleComcenterSearch();
+				return false;
+			});
+		})	
     },
-	
 	toggleComcenterSearch : function () {
 		var $comcenter = $("#comcenter-friends"),
 		$searchForm = $comcenter.find("#comcenter-search"),
